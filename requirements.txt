@@ -1,0 +1,8 @@
+discord.py>=2.0.0
+yt-dlp>=2023.9.24
+pynacl
+redis
+motor
+pymongo
+ffmpeg-python
+spotdl

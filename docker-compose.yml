@@ -1,0 +1,77 @@
+services:
+  discord-bot:
+    build: .
+    container_name: discord_download_bot
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - BOT_PREFIX=${BOT_PREFIX:-+}
+      - BOT_NAME=${BOT_NAME:-MediaDownloader}
+      - BOT_VERSION=${BOT_VERSION:-1.0.0}
+      - RPC_ENABLED=${RPC_ENABLED:-true}
+      - RPC_STATE=${RPC_STATE:-Descargando contenido}
+      - RPC_DETAILS=${RPC_DETAILS:-Ayudando a usuarios}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+      - MONGODB_ENABLED=${MONGODB_ENABLED:-true}
+      - MONGODB_URI=mongodb://mongo:27017/
+      - MONGODB_DB=${MONGODB_DB:-mediadownloader}
+      - MONGODB_USER=${MONGODB_USER:-}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD:-}
+      - MONGODB_AUTH_SOURCE=${MONGODB_AUTH_SOURCE:-admin}
+      - MAX_DOWNLOADS=${MAX_DOWNLOADS:-4}
+      - DOWNLOAD_TIMEOUT=${DOWNLOAD_TIMEOUT:-600}
+    volumes:
+      - ./downloads:/app/downloads
+    depends_on:
+      - redis
+      - mongo
+    networks:
+      - bot-network
+  redis:
+    image: redis:alpine
+    container_name: discord_bot_redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - bot-network
+  mongo:
+    image: mongo:latest
+    container_name: discord_bot_mongo
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - bot-network
+  # Interfaz web para MongoDB (opcional)
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=pass
+    depends_on:
+      - mongo
+    networks:
+      - bot-network
+networks:
+  bot-network:
+    driver: bridge
+volumes:
+  redis-data:
+  mongo-data:
