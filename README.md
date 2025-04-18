@@ -1,120 +1,122 @@
-YADB-YetAnotherDownloaderBot
-===================
+# YADB - Yet Another Downloader Bot
 
-Un bot de Discord potente y versátil para descargar contenido multimedia de múltiples plataformas, incluyendo YouTube, TikTok, Twitter, Instagram, Facebook y Spotify.
+YADB (Yet Another Downloader Bot) is a powerful and versatile Discord bot designed to download multimedia content from multiple platforms, including YouTube, TikTok, Twitter, Instagram, Facebook, and Spotify.
 
-🌟 Características
-------------------
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/x-name15/YADB---YetAnotherDownloaderBot)
+[![Discord.py](https://img.shields.io/badge/discord.py-2.0+-blueviolet)](https://discordpy.readthedocs.io/)
 
-*   **Múltiples Plataformas**: Descarga de YouTube, TikTok, Twitter/X, Instagram, Facebook y Spotify
-    
-*   **Diferentes Formatos**: Descargas en formato video o audio con opciones de calidad
-    
-*   **Soporte para Playlists**: Descarga listas de reproducción completas
-    
-*   **Cola de Descargas**: Sistema de cola para gestionar múltiples solicitudes
-    
-*   **Base de Datos**: Almacenamiento de historial de descargas en MongoDB o JSON
-    
-*   **Timeout Dinámico**: Ajusta el tiempo de espera según la duración del contenido
-    
-*   **Compresión Automática**: Comprime archivos grandes para cumplir con los límites de Discord
-    
-*   **Interfaz Intuitiva**: Botones para seleccionar opciones de descarga
-    
-*   **Estadísticas**: Seguimiento de descargas y usuarios más activos
-    
+## 🌟 Features
 
-📋 Comandos
------------
+- **Multi-Platform Support**: Download from YouTube, TikTok, Twitter/X, Instagram, Facebook, and Spotify.
+- **Audio & Video Options**: Download in both video and audio formats with quality options.
+- **Playlist Support**: Download entire playlists with ease.
+- **Download Queue**: Manage multiple requests through a queue system.
+- **Database Integration**: Store download history in MongoDB or fallback to JSON.
+- **Dynamic Timeout**: Automatically adjusts the timeout based on content duration.
+- **File Compression**: Compresses large files to comply with Discord upload limits.
+- **Interactive Interface**: Use Discord buttons to choose download options.
+- **Statistics**: Track downloads and display the most active users.
 
-*   !download \[URL\] - Descarga contenido de la URL proporcionada
-    
-*   !queue - Muestra el estado actual de la cola de descargas
-    
-*   !stats - Muestra estadísticas sobre las descargas realizadas
-    
+## 📋 Commands
 
-🔧 Requisitos
--------------
+- `!download [URL]` - Download content from the provided URL.
+- `!queue` - Show the current status of the download queue.
+- `!stats` - Display statistics about downloads and usage.
 
-*   Python 3.8+
-    
-*   Docker y Docker Compose (recomendado)
-    
-*   Token de bot de Discord
-    
-*   Conexión a Internet
-    
-*   spotDL (opcional, para descargas de Spotify)
-    
+## 🔧 Requirements
 
-🚀 Instalación
---------------
+- Python 3.8+
+- Docker and Docker Compose (recommended)
+- Discord bot token
+- Internet connection
+- spotDL (optional, for Spotify downloads)
 
-### Usando Docker (Recomendado)
+## 🚀 Installation
 
-1.  bashgit clone https://github.com/usuario/media-downloader.gitcd media-downloader
-    
-2.  CodeDISCORD\_TOKEN=tu\_token\_aquíBOT\_PREFIX=!BOT\_NAME=MediaDownloaderBOT\_VERSION=1.0.0MONGODB\_ENABLED=trueMONGODB\_DB=mediadownloaderMAX\_DOWNLOADS=4DOWNLOAD\_TIMEOUT=600
-    
-3.  bashdocker-compose up -d
-    
+### Using Docker (Recommended)
 
-### Instalación Manual
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/x-name15/YADB---YetAnotherDownloaderBot.git
+   cd YADB---YetAnotherDownloaderBot
+   ```
 
-1.  bashgit clone https://github.com/usuario/media-downloader.gitcd media-downloader
-    
-2.  bashpip install -r requirements.txtpip install spotdl # Opcional, para soporte de Spotify
-    
-3.  Crea un archivo .env con las variables necesarias.
-    
-4.  bashpython bot.py
-    
+2. Create a `.env` file with the necessary variables:
+   ```
+   DISCORD_TOKEN=your_discord_token_here
+   BOT_PREFIX=!
+   BOT_NAME=YADB-YetAnotherDownloaderBot
+   BOT_VERSION=1.0.0
+   MONGODB_ENABLED=true
+   MONGODB_DB=yadb
+   MAX_DOWNLOADS=4
+   DOWNLOAD_TIMEOUT=600
+   ```
 
-⚙️ Configuración
-----------------
+3. Start the containers:
+   ```bash
+   docker-compose up -d
+   ```
 
-Todas las configuraciones se realizan a través de variables de entorno en el archivo .env:
+### Manual Installation
 
-**VariableDescripciónValor Predeterminado**DISCORD\_TOKENToken del bot de Discord_Requerido_BOT\_PREFIXPrefijo para comandos!BOT\_NAMENombre del botMediaDownloaderBOT\_VERSIONVersión del bot1.0.0MONGODB\_ENABLEDActivar MongoDBtrueMONGODB\_URIURI de MongoDBmongodb://mongo:27017/MONGODB\_DBBase de datos de MongoDBmediadownloaderMAX\_DOWNLOADSDescargas simultáneas máximas4DOWNLOAD\_TIMEOUTTiempo de espera en segundos600RPC\_ENABLEDActivar Rich Presencetrue
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/x-name15/YADB---YetAnotherDownloaderBot.git
+   cd YADB---YetAnotherDownloaderBot
+   ```
 
-⚠️ Solución de Problemas
-------------------------
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   pip install spotdl  # Optional, for Spotify support
+   ```
 
-*   **Error con Spotify**: Asegúrate de tener spotDL instalado (pip install spotdl).
-    
-*   **Problemas con Redis/MongoDB**: Verifica que los contenedores estén en ejecución (docker-compose ps).
-    
-*   **Descargas Fallidas**: Algunas plataformas pueden limitar las descargas. Asegúrate de que el contenido sea público.
-    
-*   **El Bot No Responde**: Verifica los logs (docker-compose logs -f discord-bot).
-    
+3. Create a `.env` file with the necessary variables.
 
-📝 Notas
---------
+4. Start the bot:
+   ```bash
+   python bot.py
+   ```
 
-*   Este bot está diseñado para uso personal y educativo.
-    
-*   Respeta los términos de servicio de las plataformas.
-    
-*   No está diseñado para descargar contenido con derechos de autor sin permiso.
-    
+## ⚙️ Configuration
 
-📄 Licencia
------------
+All configurations are done through environment variables in the `.env` file:
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+| Variable         | Description                       | Default Value                  |
+|------------------|-----------------------------------|--------------------------------|
+| DISCORD_TOKEN    | Discord bot token                | *Required*                    |
+| BOT_PREFIX       | Command prefix                   | !                              |
+| BOT_NAME         | Name of the bot                  | YADB-YetAnotherDownloaderBot  |
+| BOT_VERSION      | Version of the bot               | 1.0.0                         |
+| MONGODB_ENABLED  | Enable MongoDB                   | true                          |
+| MONGODB_URI      | URI for MongoDB                  | mongodb://mongo:27017/        |
+| MONGODB_DB       | MongoDB database name            | yadb                          |
+| MAX_DOWNLOADS    | Maximum simultaneous downloads   | 4                              |
+| DOWNLOAD_TIMEOUT | Timeout in seconds               | 600                            |
+| RPC_ENABLED      | Enable Rich Presence             | true                           |
 
-🙏 Créditos
------------
+## ⚠️ Troubleshooting
 
-*   [discord.py](https://github.com/Rapptz/discord.py)
-    
-*   [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-    
-*   [spotDL](https://github.com/spotDL/spotify-downloader)
-    
-*   [MongoDB](https://www.mongodb.com/)
-    
-*   [Redis](https://redis.io/)
+- **Error with Spotify**: Ensure `spotDL` is installed (`pip install spotdl`).
+- **Issues with Redis/MongoDB**: Verify that the containers are running (`docker-compose ps`).
+- **Failed Downloads**: Some platforms restrict downloads. Ensure the content is public.
+- **Bot Not Responding**: Check the logs (`docker-compose logs -f discord-bot`).
+
+## 📝 Notes
+
+- This bot is designed for personal and educational use.
+- Please respect the terms of service of the platforms.
+- This bot is not intended to download copyrighted content without permission.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 🙏 Credits
+
+- [discord.py](https://github.com/Rapptz/discord.py)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [spotDL](https://github.com/spotDL/spotify-downloader)
+- [MongoDB](https://www.mongodb.com/)
+- [Redis](https://redis.io/)
