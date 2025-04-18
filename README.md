@@ -62,14 +62,13 @@ YADB (Yet Another Downloader Bot) is a powerful and versatile Discord bot design
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/x-name15/YADB---YetAnotherDownloaderBot.git
-   cd YADB---YetAnotherDownloaderBot
+   git clone https://github.com/x-name15/YADB-YetAnotherDownloaderBot.git
+   cd YADB-YetAnotherDownloaderBot
    ```
 
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
-   pip install spotdl  # Optional, for Spotify support
    ```
 
 3. Create a `.env` file with the necessary variables.
