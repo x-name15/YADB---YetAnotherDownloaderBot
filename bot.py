@@ -40,7 +40,7 @@ RPC_LARGE_TEXT = os.getenv("RPC_LARGE_TEXT", "Bot de Descarga de Medios")
 RPC_SMALL_IMAGE = os.getenv("RPC_SMALL_IMAGE", "discord_logo")
 RPC_SMALL_TEXT = os.getenv("RPC_SMALL_TEXT", "Powered by Discord.py")
 RPC_BUTTON_LABEL = os.getenv("RPC_BUTTON_LABEL", "Ver Repo")
-RPC_BUTTON_URL = os.getenv("RPC_BUTTON_URL", "https://github.com/usuario/media-downloader")
+RPC_BUTTON_URL = os.getenv("RPC_BUTTON_URL", "https://github.com/x-name15/YADB-YetAnotherDownloaderBot")
 
 MONGODB_ENABLED = os.getenv("MONGODB_ENABLED", "false").lower() == "true"
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017/")
